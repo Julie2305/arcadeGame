@@ -1,17 +1,25 @@
 // Enemies our player must avoid
 var Enemy = function () {
-  this.x = -100;
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
-
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
   this.sprite = 'images/enemy-bug.png';
+
+  // set a negative start value so the enemy starts outside of the screen
+  this.start = -100
+  this.x = this.start;
+
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
+  // if statement to reset the x position of the enemy to the negative start position again
+  if (this.x > ctx.canvas.width * 1.2) {
+    this.x = this.start;
+  }
+
   this.x = this.x + 100 * dt; 
   this.y = 2 * 73;
   // You should multiply any movement by the dt parameter
