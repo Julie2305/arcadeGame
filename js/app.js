@@ -1,6 +1,6 @@
 // Enemies our player must avoid
 var Enemy = function () {
-  this.x = 0
+  this.x = -100;
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
 
@@ -12,8 +12,7 @@ var Enemy = function () {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
-
-  this.x = 0 + this.x + dt * 100;
+  this.x = this.x + 100 * dt; 
   this.y = 2 * 73;
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
