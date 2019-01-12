@@ -6,7 +6,6 @@ var Enemy = function (startX, y, speed) {
   // a helper we've provided to easily load images
   this.sprite = 'images/enemy-bug.png';
 
-  // set a negative start value so the enemy starts outside of the screen
   this.speed = speed;
   this.startX = startX;
   this.x = this.startX;
@@ -53,12 +52,18 @@ Player.prototype.render = function () {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 const allEnemies = [
-  //new Enemy (-100, 1, 100),
-  //new Enemy(-200, 0, 100),
-  new Enemy(-200, 1, 100),
-  new Enemy(-200, 2, 100),
-  new Enemy(-200, 3, 100),
-  // new Enemy(-200, 4, 100),
+  // Enemy(startX, y, speed)
+  // set a negative value for startX so the enemy starts outside of the screen.
+  // y is the row that the enemy wil move over
+  new Enemy(-300, 1, 300),
+  new Enemy(-100, 1, 75),
+  new Enemy(-200, 1, 200),
+  new Enemy(-200, 1, 150),
+  new Enemy(-400, 2, 100),
+  new Enemy(-100, 2, 150),
+  new Enemy(-100, 3, 100),
+  new Enemy(-200, 3, 200),
+  new Enemy(-100, 3, 90),
 ]
 
 const player = new Player;
