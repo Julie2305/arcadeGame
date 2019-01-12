@@ -25,7 +25,6 @@ Enemy.prototype.update = function (dt) {
   // which will ensure the game runs at the same speed for
   // all computers.
   this.x = this.x + this.speed * dt;
-  this.y = this.y;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -36,18 +35,38 @@ Enemy.prototype.render = function () {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function () {
+var Player = function (startX, startY) {
   this.player = 'images/char-boy.png';
+  this.deltaMovement = {
+    x: 101,
+    y: 83
+  }
+  this.x = startX * this.deltaMovement.x;
+  this.y = startY * this.deltaMovement.y - 18;
 }
 
 Player.prototype.update = function (dt) {
-  this.x = 2 * 101;
-  this.y = 5 * 75;
 }
 
 Player.prototype.render = function () {
   ctx.drawImage(Resources.get(this.player), this.x, this.y);
 }
+
+Player.prototype.handleInput = function (e) {
+  if (e === 'up' && this.y > 0) {
+    this.y = this.y - this.deltaMovement.y;
+  }
+  if (e === 'down' && this.y < (this.deltaMovement.y - 18) * 5) {
+    this.y = this.y + this.deltaMovement.y;
+  }
+  if (e === 'right' && this.x < this.deltaMovement.x * 4) {
+    this.x = this.x + this.deltaMovement.x;
+  } 
+  if (e === 'left' && this.x > 0) {
+    this.x = this.x - this.deltaMovement.x;
+  }
+}
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -57,7 +76,7 @@ const allEnemies = [
   // y is the row that the enemy wil move over
   new Enemy(-300, 1, 300),
   new Enemy(-100, 1, 75),
-  new Enemy(-200, 1, 200),
+  new Enemy(-150, 1, 200),
   new Enemy(-200, 1, 150),
   new Enemy(-400, 2, 100),
   new Enemy(-100, 2, 150),
@@ -66,9 +85,7 @@ const allEnemies = [
   new Enemy(-100, 3, 90),
 ]
 
-const player = new Player;
-
-
+const player = new Player(2, 5);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
