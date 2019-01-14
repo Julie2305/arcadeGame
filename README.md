@@ -2,19 +2,35 @@
 
 ## Table of Contents
 
-- [Instructions](#instructions)
-- [Contributing](#contributing)
+* [About this project](#about-this-project)
+* [Game rules](#game-rules)
+* [Game settings](#game-settings)
+* [Future featrues](#future-features)
 
-## Instructions
+## About this project
+This classic arecade game was game is partly built by **Julie Teeuwen**. It is the thrid project of the [UDACITY FRONTEND DEVELOPERS COURS](https://eu.udacity.com/course/front-end-web-developer-nanodegree--nd001). The previous projects were creating a basic portfolio and a memory game. Checkout https://github.com/Julie2305/portfolio to see her full portfolio.
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+A stater code was provided by the udacity course. The goal was to create enemy's intances and a player instance within the app.js. The following specifications should be built in:
+- Player can not move off screen
+- Vehicles cross the screen
+- Vehicle-player collisions happen logically (not to early or too late)
+- Vehicle-player collision resets the game
+- Something happens when player wins
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
+## Game rules
+Move the player around with the arrow keys. Try to get your player to the water side. Avoid the bug's, they are your enemy's!
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
+## Game settings
+- Adjust the enemy's within the allEnemy's array. ```Enemy(startX, y, speed) ```. Realistic values to set here are:
+-- startX: between -100 and -500
+-- y: 1, 2 or 3 (the rows of the stones)
+-- speed: between 50 and 400
+- Adjust the player within Player.player
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+## Future features
+- Create the Enemy attributes randomly, so the game will be differtent every time
+- Make the amount of Enemy's easier to config
+- Keep track of amount of movements / time to generate a score
+- Create a retry button
+- Pick a player
+- Create different levels (differnt amount of enemy's) 

@@ -45,6 +45,10 @@ Enemy.prototype.render = function () {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function (startX, startY) {
+  // deltaMovement are the same values of the blockWidth and blockHide from the engine.js
+  // they are added so we know how big the steps in the x and the y position should be.
+  // an offset of 18 is set to the y movement. 
+  // a win property is set to execute the functionality's when the player has reached the water.
   this.player = 'images/char-boy.png';
   this.deltaMovement = {
     x: 101,
@@ -58,6 +62,7 @@ var Player = function (startX, startY) {
 }
 
 Player.prototype.update = function () {
+  // when this.y = -18, the player reaches the water
   if (this.y === - 18) {
     this.win = true;
   }
@@ -111,6 +116,7 @@ document.addEventListener('keyup', function (e) {
     39: 'right',
     40: 'down'
   };
+  // block movements when the player has reached the water
   if (!player.win) {
     player.handleInput(allowedKeys[e.keyCode]);
   }

@@ -20,7 +20,7 @@ var Engine = (function(global) {
      */
     var doc = global.document,
         win = global.window,
-      canvas = doc.createElement('canvas'),
+        canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
 
@@ -115,9 +115,9 @@ var Engine = (function(global) {
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
             numRows = 6,
-          numCols = 5,
-          blockHeight = 83,
-          blockWidth = 101,
+            numCols = 5,
+            blockHeight = 83,
+            blockWidth = 101,
             row, col;
 
         // Before drawing, clear existing canvas
@@ -171,14 +171,6 @@ var Engine = (function(global) {
     function reset() {
         // noop
   }
-  
-  // function checkCollisions() {
-  //   window.console.log('hallo')
-  //   ctx.font = "30px Arial";
-  //   ctx.fillText("Hello World", 200, 200);
-  //   var test = ctx.getContext()
-  //   window.console.log(test)
-  // }
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
