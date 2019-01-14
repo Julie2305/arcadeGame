@@ -15,8 +15,8 @@ var Enemy = function (startX, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
-  // if statement to reset the x position of the enemy to the negative 
-  //start position again when he is 20% off the canvas widht. 
+  // This if statement resets the x position of the enemy to the negative 
+  // start position when the sprite is 20% off the canvas widht. 
   if (this.x > ctx.canvas.width * 1.2) {
     this.x = this.startX;
   }
@@ -25,6 +25,15 @@ Enemy.prototype.update = function (dt) {
   // which will ensure the game runs at the same speed for
   // all computers.
   this.x = this.x + this.speed * dt;
+
+  if (player.y === this.y && player.x - 50 <= this.x && player.x + 50 >= this.x) {
+    player.y = player.startY;
+  }
+
+  if (player.win) {
+    this.sprite = 'images/Star.png';
+  }
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -41,11 +50,17 @@ var Player = function (startX, startY) {
     x: 101,
     y: 83
   }
-  this.x = startX * this.deltaMovement.x;
-  this.y = startY * this.deltaMovement.y - 18;
+  this.startX = startX * this.deltaMovement.x;
+  this.startY = startY * this.deltaMovement.y - 18;
+  this.x = this.startX; 
+  this.y = this.startY;
+  this.win = false;
 }
 
-Player.prototype.update = function (dt) {
+Player.prototype.update = function () {
+  if (this.y === - 18) {
+    this.win = true;
+  }
 }
 
 Player.prototype.render = function () {
@@ -70,6 +85,7 @@ Player.prototype.handleInput = function (e) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+const player = new Player(2, 5);
 const allEnemies = [
   // Enemy(startX, y, speed)
   // set a negative value for startX so the enemy starts outside of the screen.
@@ -85,7 +101,6 @@ const allEnemies = [
   new Enemy(-100, 3, 90),
 ]
 
-const player = new Player(2, 5);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -96,6 +111,7 @@ document.addEventListener('keyup', function (e) {
     39: 'right',
     40: 'down'
   };
-
-  player.handleInput(allowedKeys[e.keyCode]);
+  if (!player.win) {
+    player.handleInput(allowedKeys[e.keyCode]);
+  }
 });

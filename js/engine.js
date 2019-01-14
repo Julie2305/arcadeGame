@@ -20,7 +20,7 @@ var Engine = (function(global) {
      */
     var doc = global.document,
         win = global.window,
-        canvas = doc.createElement('canvas'),
+      canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
 
@@ -79,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        //checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -115,7 +115,9 @@ var Engine = (function(global) {
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
             numRows = 6,
-            numCols = 5,
+          numCols = 5,
+          blockHeight = 83,
+          blockWidth = 101,
             row, col;
 
         // Before drawing, clear existing canvas
@@ -134,9 +136,15 @@ var Engine = (function(global) {
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
-                ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+              ctx.drawImage(Resources.get(rowImages[row]), col * blockWidth, row * blockHeight);
             }
-        }
+      }
+      if (player.win) {
+        ctx.font = "40px Sans-serif";
+        ctx.fillStyle = 'white';
+        ctx.textAlign = "center";
+        ctx.fillText("Congratulations! You won", canvas.width / 2, (canvas.height - blockHeight));
+      }
 
         renderEntities();
     }
@@ -162,7 +170,15 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
-    }
+  }
+  
+  // function checkCollisions() {
+  //   window.console.log('hallo')
+  //   ctx.font = "30px Arial";
+  //   ctx.fillText("Hello World", 200, 200);
+  //   var test = ctx.getContext()
+  //   window.console.log(test)
+  // }
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
@@ -173,7 +189,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/Star.png'
     ]);
     Resources.onReady(init);
 
